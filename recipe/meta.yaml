@@ -1,5 +1,5 @@
 {% set name = "fastapi-cli" %}
-{% set version = "0.0.7" %}
+{% set version = "0.0.20" %}
 
 package:
   name: {{ name|lower }}
@@ -7,41 +7,51 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/fastapi_cli-{{ version }}.tar.gz
-  sha256: 02b3b65956f526412515907a0793c9094abd4bfb5457b389f645b0ea6ba3605e
+  sha256: d17c2634f7b96b6b560bc16b0035ed047d523c912011395f49f00a421692bc3a
 
 build:
+  number: 0
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   entry_points:
     - fastapi = fastapi_cli.cli:main
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
 
 requirements:
   host:
-    - python {{ python_min }}
+    - python
     - pdm-backend
     - pip
   run:
-    - rich-toolkit >=0.11.1
-    - python >={{ python_min }}
-    - typer >=0.12.3
+    - python
+    - rich-toolkit >=0.14.8
+    - typer >=0.15.1
+    - tomli >=2.0.0  # [py<311]
     - uvicorn-standard >=0.15.0
+    - pydantic >=2.0.0
 
 test:
   imports:
     - fastapi_cli
+  requires:
+    - pip
+    - pytest >=4.4.0,<9.0.0
+    #- fastapi
   commands:
     - pip check
     - fastapi --help
-  requires:
-    - pip
-    - fastapi
-    - python {{ python_min }}
+    - fastapi --version
+    - fastapi dev --help
+    - fastapi run --help
 
 about:
-  home: https://github.com/tiangolo/fastapi-cli
+  home: https://github.com/fastapi/fastapi-cli
   summary: Run and manage FastAPI apps from the command line with FastAPI CLI. 🚀
+  description: |
+    FastAPI CLI is a command line program fastapi that you can use to serve your FastAPI app, 
+    manage your FastAPI project, and more.
+  dev_url: https://github.com/fastapi/fastapi-cli
+  doc_url: https://github.com/fastapi/fastapi-cli
   license: MIT
+  license_family: MIT
   license_file: LICENSE
 
 extra:
