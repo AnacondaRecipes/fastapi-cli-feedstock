@@ -26,6 +26,9 @@ requirements:
     - typer >=0.15.1
     - tomli >=2.0.0  # [py<311]
     - uvicorn-standard >=0.15.0
+    # 'pydantic' is a missing runtime dependency and is not mentioned here https://github.com/fastapi/fastapi-cli/blob/0.0.20/pyproject.toml#L34-L39, 
+    # but it's used at runtime here https://github.com/fastapi/fastapi-cli/blob/0.0.20/src/fastapi_cli/cli.py#L6 
+    # and here https://github.com/fastapi/fastapi-cli/blob/0.0.20/src/fastapi_cli/config.py#L5.
     - pydantic >=2.0.0
 
 test:
@@ -34,6 +37,7 @@ test:
   requires:
     - pip
     - pytest >=4.4.0,<9.0.0
+    # Disabling fastapi because it's a circular dependency.
     #- fastapi
   commands:
     - pip check
