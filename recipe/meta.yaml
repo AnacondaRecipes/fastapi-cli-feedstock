@@ -34,17 +34,20 @@ requirements:
 test:
   imports:
     - fastapi_cli
+  source_files:
+    - tests
   requires:
     - pip
     - pytest >=4.4.0,<9.0.0
     # Disabling fastapi because it's a circular dependency.
-    #- fastapi
+    - fastapi
   commands:
     - pip check
     - fastapi --help
     - fastapi --version
     - fastapi dev --help
     - fastapi run --help
+    - pytest tests -vv
 
 about:
   home: https://github.com/fastapi/fastapi-cli
