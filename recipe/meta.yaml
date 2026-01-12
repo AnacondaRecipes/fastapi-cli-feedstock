@@ -40,7 +40,7 @@ test:
     - pip
     - pytest >=4.4.0,<9.0.0
     # Disabling fastapi because it's a circular dependency.
-    - fastapi
+    - fastapi  # [py<314]
     # 'test_script' requires coverage to run in a subprocess, see https://github.com/fastapi/fastapi-cli/blob/0.0.20/tests/test_cli.py#L527
     - coverage >=6.2,<8.0
   commands:
@@ -49,7 +49,7 @@ test:
     - fastapi --version
     - fastapi dev --help
     - fastapi run --help
-    - pytest tests -vv
+    - pytest tests -vv  # [py<314]
 
 about:
   home: https://github.com/fastapi/fastapi-cli
