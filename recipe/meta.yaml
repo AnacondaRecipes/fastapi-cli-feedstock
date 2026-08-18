@@ -1,5 +1,5 @@
 {% set name = "fastapi-cli" %}
-{% set version = "0.0.20" %}
+{% set version = "0.0.32" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,14 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/fastapi_cli-{{ version }}.tar.gz
-  sha256: d17c2634f7b96b6b560bc16b0035ed047d523c912011395f49f00a421692bc3a
+  sha256: 38024d2345275e1b37ce8848727a580d84901b570e96b3256d9d36a9a5039424
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   entry_points:
     - fastapi = fastapi_cli.cli:main
+  skip: true  # [py<310]
 
 requirements:
   host:
@@ -23,13 +24,17 @@ requirements:
   run:
     - python
     - rich-toolkit >=0.14.8
-    - typer >=0.15.1
+    - typer >=0.16.0
     - tomli >=2.0.0  # [py<311]
     - uvicorn-standard >=0.15.0
-    # 'pydantic' is a missing runtime dependency and is not mentioned here https://github.com/fastapi/fastapi-cli/blob/0.0.20/pyproject.toml#L34-L39, 
-    # but it's used at runtime here https://github.com/fastapi/fastapi-cli/blob/0.0.20/src/fastapi_cli/cli.py#L6 
+    # 'pydantic' is a missing runtime dependency and is not mentioned here https://github.com/fastapi/fastapi-cli/blob/0.0.20/pyproject.toml#L34-L39,
+    # but it's used at runtime here https://github.com/fastapi/fastapi-cli/blob/0.0.20/src/fastapi_cli/cli.py#L6
     # and here https://github.com/fastapi/fastapi-cli/blob/0.0.20/src/fastapi_cli/config.py#L5.
     - pydantic >=2.0.0
+    - uvicorn >=0.15.0
+  run_constrained:
+    - fastapi-new >=0.0.2
+    - fastapi-cloud-cli >=0.1.1
 
 test:
   imports:
@@ -55,7 +60,7 @@ about:
   home: https://github.com/fastapi/fastapi-cli
   summary: Run and manage FastAPI apps from the command line with FastAPI CLI. 🚀
   description: |
-    FastAPI CLI is a command line program fastapi that you can use to serve your FastAPI app, 
+    FastAPI CLI is a command line program fastapi that you can use to serve your FastAPI app,
     manage your FastAPI project, and more.
   dev_url: https://github.com/fastapi/fastapi-cli
   doc_url: https://github.com/fastapi/fastapi-cli
