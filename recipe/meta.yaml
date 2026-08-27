@@ -64,7 +64,7 @@ about:
     FastAPI CLI is a command line program fastapi that you can use to serve your FastAPI app,
     manage your FastAPI project, and more.
   dev_url: https://github.com/fastapi/fastapi-cli
-  doc_url: https://github.com/fastapi/fastapi-cli
+  doc_url: https://fastapi.tiangolo.com/fastapi-cli
   license: MIT
   license_family: MIT
   license_file: LICENSE
