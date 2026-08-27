@@ -44,8 +44,7 @@ test:
   requires:
     - pip
     - pytest >=7.4.0,<10.0.0
-    # Disabling fastapi because it's a circular dependency.
-    - fastapi >=0.128.0  # [py<314]
+    - fastapi >=0.128.0
     # 'test_script' requires coverage to run in a subprocess, see https://github.com/fastapi/fastapi-cli/blob/0.0.20/tests/test_cli.py#L527
     - coverage >=6.2,<8.0
   commands:
@@ -56,7 +55,7 @@ test:
     - fastapi run --help
     # currently 'test_version' doesn't work properly if the optional fastapi-cloud-cli isn't present.
     # E AssertionError: assert 'FastAPI Cloud CLI version:' in 'FastAPI CLI version: 0.0.32\n'
-    - pytest tests --deselect=tests/test_cli.py::test_version -vv  # [py<314]
+    - pytest tests --deselect=tests/test_cli.py::test_version -vv
 
 about:
   home: https://github.com/fastapi/fastapi-cli
