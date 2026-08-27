@@ -56,6 +56,11 @@ test:
     - dir "%PREFIX%\Scripts\fastapi*"
     - python -c "import fastapi_cli; print(fastapi_cli.__file__)"
     - python -m fastapi_cli.cli --help
+    - fastapi --help
+    - fastapi --version
+    - fastapi dev --help
+    - fastapi run --help
+    - pytest tests --deselect=tests/test_cli.py::test_version -vv
 
     #- pip check
     #- fastapi --help
