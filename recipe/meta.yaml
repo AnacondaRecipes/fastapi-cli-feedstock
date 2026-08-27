@@ -40,6 +40,7 @@ test:
     - fastapi_cli
   source_files:
     - tests
+    - scripts
   requires:
     - pip
     - pytest >=4.4.0,<9.0.0
