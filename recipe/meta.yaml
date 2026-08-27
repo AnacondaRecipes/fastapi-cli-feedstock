@@ -12,8 +12,8 @@ source:
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  entry_points:
-    - fastapi = fastapi_cli.cli:main
+  #entry_points:
+  #  - fastapi = fastapi_cli.cli:main
   skip: true  # [py<310]
   # tmp
   skip: true  # [not win]
