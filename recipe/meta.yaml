@@ -27,9 +27,9 @@ requirements:
     - typer >=0.16.0
     - tomli >=2.0.0  # [py<311]
     - uvicorn-standard >=0.15.0
-    # 'pydantic' is a missing runtime dependency and is not mentioned here https://github.com/fastapi/fastapi-cli/blob/0.0.20/pyproject.toml#L34-L39,
-    # but it's used at runtime here https://github.com/fastapi/fastapi-cli/blob/0.0.20/src/fastapi_cli/cli.py#L6
-    # and here https://github.com/fastapi/fastapi-cli/blob/0.0.20/src/fastapi_cli/config.py#L5.
+    # 'pydantic' is a missing runtime dependency and is not mentioned here https://github.com/fastapi/fastapi-cli/blob/0.0.32/pyproject.toml#L33-L38,
+    # but it's used at runtime here https://github.com/fastapi/fastapi-cli/blob/0.0.32/src/fastapi_cli/cli.py#L7
+    # and here https://github.com/fastapi/fastapi-cli/blob/0.0.32/src/fastapi_cli/config.py#L5.
     - pydantic >=2.0.0
   run_constrained:
     - fastapi-cloud-cli >=0.1.1
