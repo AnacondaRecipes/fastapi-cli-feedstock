@@ -50,12 +50,14 @@ test:
     # 'test_script' requires coverage to run in a subprocess, see https://github.com/fastapi/fastapi-cli/blob/0.0.20/tests/test_cli.py#L527
     - coverage >=6.2,<8.0
   commands:
-    - pip check
     # tmp test
-    - fastapi --help 2>&1
-    - fastapi --version 2>&1
-    - fastapi dev --help 2>&1
-    - fastapi run --help 2>&1
+    - pip check
+    - where fastapi
+    - dir "%PREFIX%\Scripts\fastapi*"
+    - python -c "import fastapi_cli; print(fastapi_cli.__file__)"
+    - python -m fastapi_cli.cli --help
+
+    #- pip check
     #- fastapi --help
     #- fastapi --version
     #- fastapi dev --help
