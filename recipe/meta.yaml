@@ -54,7 +54,9 @@ test:
     - fastapi --version
     - fastapi dev --help
     - fastapi run --help
-    - pytest tests -vv  # [py<314]
+    # currently 'test_version' doesn't work properly if the optional fastapi-cloud-cli isn't present.
+    # E AssertionError: assert 'FastAPI Cloud CLI version:' in 'FastAPI CLI version: 0.0.32\n'
+    - pytest tests --deselect=tests/test_cli.py::test_version -vv  # [py<314]
 
 about:
   home: https://github.com/fastapi/fastapi-cli
