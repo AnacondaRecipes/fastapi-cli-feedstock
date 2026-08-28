@@ -100,6 +100,7 @@ test:
     - coverage >=6.2,<8.0
   commands:
     - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
     # same issue on Windows as described here: https://github.com/AnacondaRecipes/fastapi-feedstock/blob/master/recipe/meta.yaml#L140
     - python -c "import fastapi_cli; print(fastapi_cli.__version__)"
     - fastapi --help      # [not win]
